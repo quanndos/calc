@@ -1,0 +1,12 @@
+package tests;
+import static org.junit.Assert.assertEquals;
+import res.CountRez;
+
+public class TestOper {
+    public void testPlus()
+    {
+    CountRez count = new CountRez();
+    int rez = count.calc(15, "+", 5);
+    assertEquals(20, rez);
+    }   
+}

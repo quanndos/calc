@@ -1,0 +1,52 @@
+<project name = "Calculator" >
+
+	<target name = "clear">
+  	  <delete dir ="build"/>
+	</target>
+	
+  	<target name = "build" depends = "clear">   		
+ 		<mkdir dir ="build/classes/res"/>
+ 		 
+    		<javac destdir="build/classes/res" srcdir="res">
+    		</javac>		
+    		
+    		<javac destdir="build/classes" srcdir="tests">
+    			<classpath>
+    				<pathelement location="."/>
+    				<pathelement location="build/classes/res"/>
+    				<pathelement location="lib/junit-4.13.1.jar"/>
+    			</classpath>
+    		</javac>
+    		
+    		<javac destdir="build/classes" srcdir=".">
+    			<classpath>
+    				<pathelement location="."/>
+    				<pathelement location="build/classes/res"/>
+    				<pathelement location="lib/junit-4.13.1.jar"/>
+    			</classpath>
+    		</javac>
+    		
+	</target>
+	
+  	<target name = "run" depends = "build">
+    		<java classpath="build/classes" 
+    		classname="Calc" fork = "true">
+      		</java>
+	</target>
+	
+	<target name = "test">
+		<junit printsummary="yes" haltonfailure="yes">
+			<classpath>
+  				<pathelement path="${java.class.path}"/>		
+    				<pathelement location="."/>
+    				<pathelement location="build/classes"/>
+    				<pathelement location="lib/hamcrest-2.2.jar"/>
+    				<pathelement location="lib/junit-4.13.1.jar"/>
+    			</classpath>	
+    			<test name="TestOper" haltonfailure="no"
+    				outfile="tests/TestOper">
+    			</test>
+		</junit>
+	</target>
+</project>
+	  
